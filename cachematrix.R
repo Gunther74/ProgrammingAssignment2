@@ -15,12 +15,17 @@
 #########################################################################
 
 
+####
+
+#  MakeCacheMatrix creates a matrix object object which can inverse a matrix
+
+####
 
 MakeCacheMatrix <- function (x=matrix()){ # x =matrix
   m <- NULL
   set  <- function (y) {
     x <<- y
-    m <<- NULL
+    m <<- NULL  
   }
   get  <- function()x
   setinverse <- function(solve) m<<-solve
@@ -28,6 +33,12 @@ MakeCacheMatrix <- function (x=matrix()){ # x =matrix
   list (set=set,get=get,setinverse=setinverse,getinverse=getinverse)
 }
 
+####
+
+#  CacheSolve computes the inverse of an matrix given thet object created with MakeCacheMatrix.
+#  It caches the matrix and its inverse to avoid recalculation of the inverse.
+
+####
 
 CacheSolve  <- function(x,...){
   m <- x$getinverse()
